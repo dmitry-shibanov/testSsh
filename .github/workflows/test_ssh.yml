@@ -18,4 +18,4 @@ jobs:
       with:
         submodules: recursive
     - name: Check dir
-      run: ls /helpers
+      run: ls 
