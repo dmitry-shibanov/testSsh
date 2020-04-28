@@ -2,11 +2,9 @@ name: SSHTESTS
 on: [push]
 jobs:
   SSHTESTS:
-    runs-on: ${{ matrix.os }}
+    runs-on: self-hosted
     strategy:
       fail-fast: false
-      matrix:
-        os: [ubuntu-18.04, macos-latest]
     steps:
     - name: Configure SSH
       shell: bash
@@ -14,6 +12,7 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa      
         chmod 600 ~/.ssh/id_rsa
+        cat ~/.ssh/known_hosts
     - uses: actions/checkout@v1
       with:
         submodules: recursive
